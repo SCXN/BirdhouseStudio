@@ -1,0 +1,19 @@
+extends layoutAlt
+block content
+    cover.cover.sH.sC
+        a#cover.dropAnchor
+        section.container-fluid
+            article.pT6.pB6.row
+                margin.d-none.d-sm-block.col-md-1
+                menu.sC.col-md-5
+                    h1.w1.textAlignCenter Error: #{error.status}
+                    h2.exJr.b.diminutive.caps.b.lH1.w1.textAlignCenter=message
+                    p.w1.textAlignCenter.i.diminutive "Cowabunga, dudes!"
+                    code.w3(style='max-height: 25vh; overflow-y: scroll; margin-bottom:1em;') #{error.stack}
+                    small.w1.flex.flexCol.flexAlignStart
+                        a(href='/#cover').w1 ← Return home 
+                gutter.d-none.d-md-block.col-md-1
+                 p.japanese それは決してあなたのせいではありませんでした。
+                logo.d-none.d-sm-none.d-md-flex.sC.p-0.p-lg-4.p-xl-5.col-sm-5
+                    h2(style='font-size: 72pt; color: var(--cH);').f3 WH
+                margin.col-md-1

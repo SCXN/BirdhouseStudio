@@ -1,0 +1,188 @@
+extends layout
+block content
+  include nav
+  a#top
+  header.sC.sH.wB.w1
+    section.container-fluid
+      article.row
+        item.tB.col-12.px-5
+          a(href='#findUs').relative.tB
+            h1.bM.textAlignCenter.tBlue=title
+            img(src='/images/birdKeys.png' style='position: absolute; z-index: 0;').birdKeys
+            h2.diminutive.caps.exJr.textAlignCenter &nbsp;#{description}
+              
+  master.sBB.pb-0.pb-md-5
+    section#findUs.container-fluid.mH.sC
+      article.row.px-3.px-md-0.pT6.mT3.pB5
+        h2.f3.tW.col-sm-12.mt-4.mx-0.px-0 Find Us
+        article#map.sC.col-sm-12.px-sm-2.px-md-0.mt-0.bullNosedTop
+        item.col-sm-6.bullNosedBottomLeft.p-3.m-0.uS
+          h2.tW Near The Heart
+          p.tW We are way out on the Northern end of the Olympic Peninsula in the Scenic Pacific Northwest of Washington, USA.  The nearesest international airport is in Port Angeles, only a half hour's drive away.
+        item.col-sm-6.bullNosedBottomRight.p-0.p-md-3.m-0.uS
+          p.outlined.borderColorWhite.bullNosedBottomRight.h100.sC.tW Sequim is a beautiful town located along the Pacific Ocean in Washington State. The area has a rich history and offers visitors plenty of things to see and do.
+    section#events.container-fluid.sH.sC.px-0
+      article.row.m-0.p-0.px-3.px-md-0.w1.container-fluid
+        h2.f3.col-sm-12.px-0.mx-0.tW=titleOfCalendar
+        item#calendar
+        div.eventPostersCase.col-sm-12.row.clear.pT1.mB3.sSBB.bullNosedBottom
+          each poster in eventsPostersBodies 
+            item.eventPosters.col-6.col-md-4.g-2.g-md-3
+              != poster
+              include modal
+    section#birdhouses.container-fluid.galleryBG.sH.sC.px-0
+      article.row.flex.flexCol.pt-md-3.horBreak.w1.pB3
+        h2#gallery.f3.col-12-sm.px-3.px-md-0.tW.w1.mt-4 Gallery
+        wrapper.compositor.col-sm-12.px-3.px-md-0
+          article#galleryBG.w1.bullNosedTop
+          wrapper#gallerySpyglassCase.relative.w1.h100
+            div#gallerySpyglass.absolute.hide
+              i#icon.tW.fa-solid.fa-align-left
+          each titles, index in Imgtitles
+            article.bullNosedTop.container-fluid.galleryMoreInfo.hide     
+              item.row.h100
+                div.galleryMoreInfoCase.bullNosedTopLeft.col-md-6.h100.sC
+                  !=Imgheadings[index]
+                  !=titles
+                gutter.d-none.d-md-block.col-md-6
+        item.m-0.px-3.px-md-0.pb-1.pt-1.col-sm-12.mx-0.flex.flexAlignEnd.flexJustifyStart.sSBB.bullNosedBottom
+          div.galleryItem
+            each photo in post
+              != photo.body
+        aside.col-sm-12.moreMoreMORE.textAlignRight.py-3.px-md-0
+          include shareBirdhouses
+        aside.textAlignRight.px-md-0.tW.dS 
+          i.diminutive More images on our 
+            a(href='https://birdhousestudio.tumblr.com/post/photo') blog→
+    div.line.mt-md-5
+    master#gifts.sC.pretty.mb-0.polkaDots.w1.sWB.p-0
+      section.container-fluid
+        article.row.sH.sC
+          item.col-sm-12.px-sm-3.px-md-0.mt-4.pB5.pt-5
+            h2.specials.f3.mt-2.px-2 Gift Shop
+            include store
+    div.line.mb-md-5
+    master#studioTour.pt-md-5
+      section.container-fluid.darkBlue.bullNosed.sH.sC
+        article.row
+          margin.col-sm-2
+          item.col-sm-8.px-3.px-sm-2.px-md-0.mS.textAlignCenter.tW
+            h2.f3.smallCaps Studio Tour
+            h1.borderColorWhite Year-round
+            p.m-3.initial.textAlignLeft Seven days a week, someone is always here and happy to unlock the door and show you around.  Call ahead to get acquainted and we'll put together a particular vignette to amuse your fascinations.
+          margin.col-sm-2
+          include bookings
+    master#news.py-md-5.mt-md-4
+      section.container-fluid.sSBB.bullNosed.mt-0.mt-0.mt-md-4.pt-4.pt-md-0
+        h2.f3.sM.tW.pt-3.pt-md-3 News
+        article.row.sH.pB5
+          item#latestScoop.col-sm-9.px-3.px-md-0.px-md-3.tW.lH3
+              h2=newsTitles[0]
+              h1.borderColorWhite=newsDates[0]
+              h6 by 
+                a(href='') #{newsAuthors[0]}, 
+                | contributor
+              != newsBodies[0]
+              aside.footnote
+                p 
+                  span.f4.sM Topics archive: &nbsp;
+                    each topic in newsTopics[0] 
+                      span.f2.sM.diminutive 
+                        a(href=`https://birdhousestudio.tumblr.com/archive/tagged/${topic}`) ##{topic}
+                        | , 
+          aside.col-sm-3.tW
+            h2 Fur&shy;ther Rea&shy;ding
+            ul.clear.nav
+              each scoop, index in newsTitles
+                li.pb-2(style='line-height: 9px;')
+                  a.lH1.sM(href=`${newsLinks[index]}`)=scoop
+            h2.pT4 Share This
+            include shareNews
+            h2.d-none.d-sm-block.pT4 Up&shy;com&shy;ing Eve&shy;nts:
+            item#eventsInSide.eventPosters.d-none.d-sm-block
+              each eventPoster in eventsPostersBodies 
+                !=eventPoster
+                include modal
+            h2.d-none.d-sm-block.pT4 Gifts
+              include cart
+            item#giftsInSide.eventPosters.d-none.d-sm-block
+              include store2
+              div.usa
+                include usa
+  div.line.clear
+  master#camp.poster1.pt-0.pt-md-5
+    section.container-fluid.sWB.bullNosed.mt-0.mt-md-5
+      article.row.sH.sC
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0.mS.textAlignCenter
+          h2.f3.smallCaps Camp
+          h1 Spring—Fall equinox
+          p.m-3.initial.textAlignLeft Sleep beneath a blanket of stars.  Family and pet-friendly, Waterbury Hill is a ten minute walk to the nearest beach through a wooded glen.  Ask one of our guides about where to bike.
+        margin.col-sm-2
+        aside.col-sm-12.moreMoreMORE.w1.textAlignRight.py-3
+            a.px-3.mx-1(href='#magic').outlined.borderColorWhite.mS More
+    section#magic.container-fluid
+      article.row.sH.sC
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0.textAlignCenter.tW
+          h2.f3.smallCaps Magic
+          h1.borderColorWhite Under the Stars
+          p.m-3.initial.textAlignLeft Friendship nutured by the pale moonlight:  Join the rest of the night people.  Book a camp site today!  Spots fill up fast for the coming summer.  Everyone is family.
+        include bookings
+        margin.col-sm-2
+  div.d-none.d-md-block.line.clear
+  master.sWB.pt-0.pt-md-5
+    section.container-fluid.sSBB.bullNosedTop.mt-0.mt-md-5
+      article.row.sH.sC
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0.mS.tW.textAlignCenter
+          h2.f3.smallCaps Quiet
+          h1.borderColorWhite Connectedness
+          p.m-3.initial.textAlignLeft Few places on Earth are as charmed as Waterbury Hill.  Where else can someone submerge into rich self-reflection but also feel a deep sense of kinship.
+          p.m-3.initial.textAlignLeft For so many of our friends, Waterbury Hill is their home away from home.  Our world-class year-round perfect climate ensures no one can stay away long.
+        margin.col-sm-2
+  master#retreat
+    section.container-fluid.sBB
+      article.row.sH.sC
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0.mS.tW.textAlignCenter
+          h2.f3.smallCaps Retreat
+          h1.borderColorWhite Group or Intimate
+          p.m-3.initial.textAlignLeft One of our private cabins is waiting for you.  Choose to take part in the days goup activities or relish the deep metamorphasis of seclusion.
+        margin.col-sm-2
+        include bookings
+  master#direct.pb-md-5
+    section.container-fluid.pink.mb-md-5.bullNosedBottom.sH.sC.py-5
+      article.row.my-5
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0
+          h2.textAlignCenter.f3.smallCaps Direct
+          h1.textAlignCenter Let us know
+          include contactForm
+        margin.col-sm-2
+  footer.poster2
+    section.d-none.d-md-block.container-fluid.w1
+      article.row.mH
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0.sC
+          h2.tW.f3.smallCaps Thank you!
+        margin.col-sm-2
+    section#social.container-fluid.sWB.bullNosed.sH.sC
+      article.row.my-5
+        margin.col-sm-2
+        item.col-sm-8.px-3.px-sm-2.px-md-0.mS.textAlignCenter
+          h2.f3.smallCaps Befriend
+          h1 Wherever you go, there you are
+          p.m-3.initial.textAlignLeft Stay with Waterbury Hill from virtually anyplace on this inertial plane.
+          p.mx-3.mt-0.textAlignLeft Follow us:
+        margin.col-sm-2
+        include social
+    section.container-fluid.p-0
+      article.row.mH.w1.p-0.m-0
+        margin.col-sm-2.p-0.m-0
+        statement.col-sm-8.px-0.px-sm-0.px-md-0.mH.sC
+          -var thisYear = new Date().getFullYear();
+            p.w100.textAlignCenter.tW.mS.mx-0(style='font-size: 17pt;') © 2022—#{thisYear} 
+              a(href='http://waterburyhill.herokuapp.com') Waterbury Hill.<br> 
+              | All rights reserved.
+        margin.col-sm-2.p-0.m-0

@@ -1,0 +1,12 @@
+form#emailer.modal-form.emailer.px-3(method='POST' action='send' enctype ='multipart/form-data')
+    label(for="name").w1 Name:
+    input#name.form-input.name(type='text', placeholder='Name' name='name' value="" required='true').w1
+    label(for="address").w1 Email address:
+    input#address.form-input.address(type='text', placeholder='name@address.com' name='address' value="" required='true').w1
+    label(for="subject").w1 Subject:
+    input#subject.form-input.subject(type='text', placeholder='Re:' name='subject' value="" required='true').w1
+    label(for="message").w1 Comment:
+    textarea#message.form-input.message(type='text', placeholder=' ...' name='message' value="" required='true').w1.mb-4
+    button.btn.submit-btn(type='submit' value='submit').mb-4.w1.caps.f4.mM Submit
+    h2.pt-2.f1.mM.textAlignCenter Waterbury Hill
+    p.text.textAlignCenter 218 Happy Valley Rd<br>Sequim WA 98382
